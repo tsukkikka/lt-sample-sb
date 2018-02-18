@@ -7,9 +7,18 @@ if (!process.env.token) {
 const Botkit = require('botkit');
 
 const controller = Botkit.slackbot({
-    debug:true
+    debug:false
 });
 
-controller.hears('hello','direct_message', function(bot, message) {
-    bot.reply(message,'Hello yourself!');
+const bot = controller.spawn({
+    token: process.env.token
+}).startRTM(function(err, bot, payload) {
+    if (err) {
+        console.log('Error: Cannot to Slack');
+        process.exit(1);
+    }
+});
+
+controller.hears(['hello'], 'direct_mention', function (bot, message) {
+    bot.reply(message, message.text)
 });
