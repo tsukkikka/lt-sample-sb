@@ -6,7 +6,9 @@ if (!process.env.token) {
 
 const Botkit = require('botkit');
 
-const controller = Botkit.anywhere(configuration);
+const controller = Botkit.anywhere({
+    debug:true
+});
 
 controller.hears('hello','direct_message', function(bot, message) {
     bot.reply(message,'Hello yourself!');
