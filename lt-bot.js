@@ -6,7 +6,7 @@ if (!process.env.token) {
 
 const Botkit = require('botkit');
 
-const controller = Botkit.anywhere({
+const controller = Botkit.slackbot({
     debug:true
 });
 
