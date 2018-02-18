@@ -19,6 +19,7 @@ const bot = controller.spawn({
     }
 });
 
-controller.hears(['hello'], 'direct_mention', function (bot, message) {
+controller.hears([''], ['direct_mention'], function (bot, message) {
+    console.log(message.text);
     bot.reply(message, message.text)
 });
